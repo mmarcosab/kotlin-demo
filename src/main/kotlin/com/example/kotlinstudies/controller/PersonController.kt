@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*
 class PersonController {
 
     @GetMapping
-    fun findAll(): Person {
-        return Person("test", 10, "testssss");
+    fun findAll(): List<Person> {
+        return listOf(Person("test", 10, "testssss"));
     }
 
     @GetMapping("/{id}")
