@@ -1,8 +1,10 @@
 package com.example.kotlinstudies.service
 
+import com.example.kotlinstudies.model.Person
+
 class PersonServiceImpl: PersonService {
 
-    override fun create() {
+    override fun create(person: Person) {
         try {
             // process
         } catch (ex: NullPointerException) {
@@ -27,15 +29,18 @@ class PersonServiceImpl: PersonService {
         TODO("Not yet implemented")
     }
 
-    override fun findById() {
+    override fun findById(id: Int) {
         TODO("Not yet implemented")
     }
 
-    override fun findByName() {
+    override fun findByName(name: String) {
         TODO("Not yet implemented")
     }
 
-    override fun removeById() {
+    override fun removeById(id: Int) {
+        TODO("Not yet implemented")
+    }
+    override fun removeByName(name: String) {
         TODO("Not yet implemented")
     }
 
