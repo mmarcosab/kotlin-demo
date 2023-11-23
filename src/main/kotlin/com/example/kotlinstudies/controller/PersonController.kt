@@ -5,6 +5,7 @@ import com.example.kotlinstudies.dto.mapper.PersonMapper
 import com.example.kotlinstudies.model.Person
 import com.example.kotlinstudies.service.PersonService
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/persons")
@@ -24,7 +25,7 @@ class PersonController(
     }
 
     @PostMapping
-    fun createPerson(@RequestBody personDto: PersonDto): String {
+    fun createPerson(@Valid @RequestBody personDto: PersonDto): String {
         println(personDto.toString())
         personService.create(personMapper.map(personDto))
         return "OK Created"
