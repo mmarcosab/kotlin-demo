@@ -15,13 +15,13 @@ class PersonController(
 ) {
 
     @GetMapping
-    fun findAll(): List<Person> {
-        return listOf(Person("test", 10, "testssss"));
+    fun findAll(): List<PersonDto> {
+        return listOf(PersonDto("test", "testssss", 10))
     }
 
     @GetMapping("/{id}")
-    fun findAll(id: Int): Person {
-        return Person("test", id, "testssss");
+    fun findAll(id: Int): PersonDto {
+        return PersonDto("test", "testssss", 10)
     }
 
     @PostMapping
@@ -31,4 +31,11 @@ class PersonController(
         return "OK Created"
     }
 
+    @PutMapping("/{id}")
+    fun updatePerson(@PathVariable id: Int,
+                     @Valid @RequestBody personDto: PersonDto): String {
+        println(personDto.toString())
+        personService.update(id, personMapper.map(personDto))
+        return "OK Created"
+    }
 }

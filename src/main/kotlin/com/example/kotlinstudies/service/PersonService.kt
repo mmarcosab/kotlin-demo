@@ -4,6 +4,7 @@ import com.example.kotlinstudies.model.Person
 
 interface PersonService {
     fun create(person: Person)
+    fun update(id: Int, person: Person)
     fun findAll()
     fun findById(id: Int)
     fun findByName(name: String)

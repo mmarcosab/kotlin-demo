@@ -1,7 +1,9 @@
 package com.example.kotlinstudies.service
 
 import com.example.kotlinstudies.model.Person
+import org.springframework.stereotype.Service
 
+@Service
 class PersonServiceImpl: PersonService {
 
     override fun create(person: Person) {
@@ -23,6 +25,10 @@ class PersonServiceImpl: PersonService {
             // process success
         }
 
+    }
+
+    override fun update(id: Int, person: Person) {
+        TODO("Not yet implemented")
     }
 
     override fun findAll() {
