@@ -1,10 +1,11 @@
 package com.example.kotlinstudies.service
 
+import com.example.kotlinstudies.data.repository.PersonRepository
 import com.example.kotlinstudies.model.Person
 import org.springframework.stereotype.Service
 
 @Service
-class PersonServiceImpl: PersonService {
+class PersonServiceImpl(private val repository: PersonRepository): PersonService {
 
     override fun create(person: Person) {
         try {

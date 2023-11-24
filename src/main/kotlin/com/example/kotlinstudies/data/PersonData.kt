@@ -12,7 +12,7 @@ import javax.validation.constraints.Size
 @Entity
 @Table(name = "person")
 data class PersonData (
-        @field:NotNull @Id @GeneratedValue(strategy=GenerationType.AUTO) val id: Int,
+        @field:NotNull @Id @GeneratedValue(strategy=GenerationType.SEQUENCE) val id: Int,
         @field:NotEmpty @Size(min = 3, max = 80) val name: String,
         @field:NotEmpty @Size(max = 12) val surname: String,
         @field:NotNull val age: Int
