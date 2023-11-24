@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class PersonMapper: Mapper<PersonRequestDto, Person> {
+class PersonRequestMapper: Mapper<PersonRequestDto, Person> {
     override fun map(t: PersonRequestDto): Person {
        return Person(
                t.name,
