@@ -51,7 +51,7 @@ class PersonController(
         personService.removeById(id)
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{name}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deletePerson(@PathVariable name: String) {
         personService.removeByName(name)

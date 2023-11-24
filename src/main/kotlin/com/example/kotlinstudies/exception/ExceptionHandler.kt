@@ -41,7 +41,7 @@ class ExceptionHandler {
         )
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException::class)
+    @ExceptionHandler(Exception::class)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     fun handleInternalServerError(
             exception: NotFoundException,
