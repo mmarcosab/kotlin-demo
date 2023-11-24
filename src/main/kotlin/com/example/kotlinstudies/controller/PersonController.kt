@@ -2,7 +2,7 @@ package com.example.kotlinstudies.controller
 
 import com.example.kotlinstudies.dto.PersonRequestDto
 import com.example.kotlinstudies.dto.mapper.PersonMapper
-import com.example.kotlinstudies.dto.mapper.PersonResponseDto
+import com.example.kotlinstudies.dto.PersonResponseDto
 import com.example.kotlinstudies.service.PersonService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

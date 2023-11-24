@@ -1,4 +1,4 @@
-package com.example.kotlinstudies.dto.mapper
+package com.example.kotlinstudies.dto
 
 data class PersonResponseDto (
         val id: Int,
