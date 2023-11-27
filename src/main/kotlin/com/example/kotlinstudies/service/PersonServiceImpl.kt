@@ -42,7 +42,7 @@ class PersonServiceImpl(
 
     override fun findById(id: Int): Person{
         val personData = repository.findById(id)
-        if (personData.isPresent){
+        if (personData.isEmpty){
             throw NotFoundException("person not found")
         }
         return personMapper.map(personData.get())

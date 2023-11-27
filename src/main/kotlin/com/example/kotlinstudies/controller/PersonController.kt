@@ -26,7 +26,7 @@ class PersonController(
     }
 
     @GetMapping("/{id}")
-    fun findById(id: Int): ResponseEntity<PersonResponseDto> {
+    fun findById(@PathVariable id: Int): ResponseEntity<PersonResponseDto> {
         return ResponseEntity.ok(personResponseMapper.map(personService.findById(id)))
     }
 

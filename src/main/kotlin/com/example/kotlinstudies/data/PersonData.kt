@@ -12,9 +12,10 @@ import javax.validation.constraints.Size
 @Entity
 @Table(name = "person")
 data class PersonData (
+        @Id
+        @GeneratedValue(strategy=GenerationType.IDENTITY)
+        val id: Int? = null,
         @field:NotEmpty @Size(min = 3, max = 80) val name: String,
         @field:NotEmpty @Size(max = 12) val surname: String,
         @field:NotNull val age: Int
-) {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY) val id: Int = 0 //is this the best way?
-}
+)

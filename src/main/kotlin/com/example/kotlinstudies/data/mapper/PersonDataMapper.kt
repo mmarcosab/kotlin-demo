@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component
 class PersonDataMapper: Mapper<Person, PersonData> {
     override fun map(t: Person): PersonData {
        return PersonData(
+               t.id,
                t.name,
                t.surname,
                t.age)
