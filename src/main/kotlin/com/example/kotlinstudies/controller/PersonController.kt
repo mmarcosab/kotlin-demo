@@ -7,6 +7,7 @@ import com.example.kotlinstudies.dto.mapper.PersonResponseMapper
 import com.example.kotlinstudies.model.Person
 import com.example.kotlinstudies.service.PersonService
 import org.hibernate.annotations.Cache
+import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -53,6 +54,7 @@ class PersonController(
 
     @PostMapping
     @Transactional
+    @CacheEvict("persons")
     fun createPerson(
             @Valid @RequestBody personRequestDto: PersonRequestDto,
             uriBuilder: UriComponentsBuilder
