@@ -1,12 +1,12 @@
 package com.example.kotlinstudies.model
 
-open class Person (val name: String, val age: Int, val surname: String){
+open class Person (val name: String?, val age: Int?, val surname: String?){
 
     var id: Int? = null
         get
         set
 
-    constructor(id: Int?, name: String, age: Int, surname: String) : this(name, age, surname) {
+    constructor(id: Int?, name: String?, age: Int?, surname: String?) : this(name, age, surname) {
         this.id = id
     }
 

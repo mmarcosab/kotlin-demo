@@ -4,7 +4,11 @@ import com.example.kotlinstudies.dto.PersonRequestDto
 import com.example.kotlinstudies.dto.mapper.PersonRequestMapper
 import com.example.kotlinstudies.dto.PersonResponseDto
 import com.example.kotlinstudies.dto.mapper.PersonResponseMapper
+import com.example.kotlinstudies.model.Person
 import com.example.kotlinstudies.service.PersonService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
@@ -20,9 +24,23 @@ class PersonController(
         private val personResponseMapper: PersonResponseMapper
 ) {
 
+    /*
     @GetMapping
-    fun findAll(): ResponseEntity<List<PersonResponseDto>> {
-        return ResponseEntity.ok(personService.findAll().map { p -> personResponseMapper.map(p) })
+    fun findAll(
+            @RequestParam(defaultValue = "0") pageNumber: Int,
+            @RequestParam(defaultValue = "5") size: Int,
+    ): ResponseEntity<Page<PersonResponseDto>> {
+        return ResponseEntity.ok(personService.findAll(pageNumber, size)
+                .map { p -> personResponseMapper.map(p) })
+    }
+    */
+
+    @GetMapping
+    fun findAll(
+            @PageableDefault(size = 5) pagination: Pageable
+    ): ResponseEntity<Page<PersonResponseDto>> {
+        return ResponseEntity.ok(personService.findAll(pagination)
+                .map { p -> personResponseMapper.map(p) })
     }
 
     @GetMapping("/{id}")

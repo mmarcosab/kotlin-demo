@@ -1,10 +1,15 @@
 package com.example.kotlinstudies.service
 
+import com.example.kotlinstudies.data.PersonData
 import com.example.kotlinstudies.data.mapper.PersonDataMapper
 import com.example.kotlinstudies.data.repository.PersonRepository
 import com.example.kotlinstudies.exception.NotFoundException
 import com.example.kotlinstudies.model.Person
 import com.example.kotlinstudies.model.PersonMapper
+import org.springframework.data.domain.Example
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
@@ -36,8 +41,11 @@ class PersonServiceImpl(
         TODO("Not yet implemented")
     }
 
-    override fun findAll(): List<Person> {
-        return repository.findAll().map { p ->  personMapper.map(p)}
+    override fun findAll(
+            pagination: Pageable
+    ): Page<Person> {
+        return repository.findAll(pagination)
+                .map { p ->  personMapper.map(p)}
     }
 
     override fun findById(id: Int): Person{
@@ -61,6 +69,16 @@ class PersonServiceImpl(
     }
     override fun removeByName(name: String) {
         repository.deleteByName(name)
+    }
+
+    override fun findByCombinedFilter(
+            id: Int?,
+            name: String?,
+            surname: String?,
+            age: Int?): List<Person> {
+        val person = PersonData(id, name, surname, age)
+        val listPersonData = repository.findAll(Example.of(person)).toList();
+        return listPersonData.map { p -> personMapper.map(p) }
     }
 
 }
