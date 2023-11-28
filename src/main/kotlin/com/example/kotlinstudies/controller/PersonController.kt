@@ -6,6 +6,8 @@ import com.example.kotlinstudies.dto.PersonResponseDto
 import com.example.kotlinstudies.dto.mapper.PersonResponseMapper
 import com.example.kotlinstudies.model.Person
 import com.example.kotlinstudies.service.PersonService
+import org.hibernate.annotations.Cache
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
@@ -36,6 +38,7 @@ class PersonController(
     */
 
     @GetMapping
+    @Cacheable("persons")
     fun findAll(
             @PageableDefault(size = 5) pagination: Pageable
     ): ResponseEntity<Page<PersonResponseDto>> {
