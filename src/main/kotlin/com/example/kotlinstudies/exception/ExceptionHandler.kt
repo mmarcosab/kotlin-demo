@@ -1,6 +1,6 @@
 package com.example.kotlinstudies.exception
 
-import com.example.kotlinstudies.dto.ErrorDto
+import com.example.kotlinstudies.adapter.controller.dto.ErrorDto
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.NOT_FOUND

@@ -1,4 +1,4 @@
-package com.example.kotlinstudies.data
+package com.example.kotlinstudies.adapter.data
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

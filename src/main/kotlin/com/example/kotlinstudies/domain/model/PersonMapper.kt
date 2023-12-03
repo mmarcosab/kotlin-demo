@@ -1,6 +1,6 @@
-package com.example.kotlinstudies.model
+package com.example.kotlinstudies.domain.model
 
-import com.example.kotlinstudies.data.PersonData
+import com.example.kotlinstudies.adapter.data.PersonData
 import com.example.kotlinstudies.utils.Mapper
 import org.springframework.stereotype.Component
 

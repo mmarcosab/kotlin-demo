@@ -1,6 +1,6 @@
-package com.example.kotlinstudies.kafka
+package com.example.kotlinstudies.adapter.messaging
 
-import com.example.kotlinstudies.config.KafkaConfig
+import com.example.kotlinstudies.adapter.config.KafkaConfig
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -10,7 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
 @Component
-class MessegeSenderImpl(val kafkaConfig : KafkaConfig): MessageSender{
+class MessegeSenderImpl(val kafkaConfig : KafkaConfig): MessageSender {
 
     @Autowired
     private lateinit var kafkaTemplate : KafkaTemplate<String, String>

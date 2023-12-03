@@ -1,6 +1,6 @@
-package com.example.kotlinstudies.service
+package com.example.kotlinstudies.domain.service
 
-import com.example.kotlinstudies.model.Person
+import com.example.kotlinstudies.domain.model.Person
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 

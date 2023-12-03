@@ -1,7 +1,7 @@
-package com.example.kotlinstudies.dto.mapper
+package com.example.kotlinstudies.adapter.controller.dto.mapper
 
-import com.example.kotlinstudies.dto.PersonResponseDto
-import com.example.kotlinstudies.model.Person
+import com.example.kotlinstudies.adapter.controller.dto.PersonResponseDto
+import com.example.kotlinstudies.domain.model.Person
 import com.example.kotlinstudies.utils.Mapper
 import org.springframework.stereotype.Component
 

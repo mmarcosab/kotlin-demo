@@ -1,11 +1,11 @@
-package com.example.kotlinstudies.controller
+package com.example.kotlinstudies.adapter.controller
 
-import com.example.kotlinstudies.dto.PersonRequestDto
-import com.example.kotlinstudies.dto.mapper.PersonRequestMapper
-import com.example.kotlinstudies.dto.PersonResponseDto
-import com.example.kotlinstudies.dto.mapper.PersonResponseMapper
-import com.example.kotlinstudies.kafka.MessageSender
-import com.example.kotlinstudies.service.PersonService
+import com.example.kotlinstudies.adapter.controller.dto.PersonRequestDto
+import com.example.kotlinstudies.adapter.controller.dto.mapper.PersonRequestMapper
+import com.example.kotlinstudies.adapter.controller.dto.PersonResponseDto
+import com.example.kotlinstudies.adapter.controller.dto.mapper.PersonResponseMapper
+import com.example.kotlinstudies.adapter.messaging.MessageSender
+import com.example.kotlinstudies.domain.service.PersonService
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.Page

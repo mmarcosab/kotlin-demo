@@ -1,4 +1,4 @@
-package com.example.kotlinstudies.model
+package com.example.kotlinstudies.domain.model
 
 open class Person (val name: String?, val age: Int?, val surname: String?){
 

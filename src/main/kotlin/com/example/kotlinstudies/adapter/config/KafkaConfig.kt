@@ -1,4 +1,4 @@
-package com.example.kotlinstudies.config
+package com.example.kotlinstudies.adapter.config
 
 import com.fasterxml.jackson.databind.JsonNode
 

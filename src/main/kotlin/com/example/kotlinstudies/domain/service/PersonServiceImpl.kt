@@ -1,11 +1,11 @@
-package com.example.kotlinstudies.service
+package com.example.kotlinstudies.domain.service
 
-import com.example.kotlinstudies.data.PersonData
-import com.example.kotlinstudies.data.mapper.PersonDataMapper
-import com.example.kotlinstudies.data.repository.PersonRepository
+import com.example.kotlinstudies.adapter.data.PersonData
+import com.example.kotlinstudies.adapter.data.mapper.PersonDataMapper
+import com.example.kotlinstudies.adapter.data.repository.PersonRepository
 import com.example.kotlinstudies.exception.NotFoundException
-import com.example.kotlinstudies.model.Person
-import com.example.kotlinstudies.model.PersonMapper
+import com.example.kotlinstudies.domain.model.Person
+import com.example.kotlinstudies.domain.model.PersonMapper
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -18,7 +18,7 @@ class PersonServiceImpl(
         private val personMapper: PersonMapper
 ): PersonService {
 
-    override fun create(person: Person): Person{
+    override fun create(person: Person): Person {
         var result = runCatching {
             // process, metrics etc
         }
@@ -47,7 +47,7 @@ class PersonServiceImpl(
                 .map { p ->  personMapper.map(p)}
     }
 
-    override fun findById(id: Int): Person{
+    override fun findById(id: Int): Person {
         val personData = repository.findById(id)
         if (personData.isEmpty){
             throw NotFoundException("person not found")

@@ -1,4 +1,4 @@
-package com.example.kotlinstudies.dto
+package com.example.kotlinstudies.adapter.controller.dto
 
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
