@@ -4,9 +4,8 @@ import com.example.kotlinstudies.dto.PersonRequestDto
 import com.example.kotlinstudies.dto.mapper.PersonRequestMapper
 import com.example.kotlinstudies.dto.PersonResponseDto
 import com.example.kotlinstudies.dto.mapper.PersonResponseMapper
-import com.example.kotlinstudies.model.Person
+import com.example.kotlinstudies.kafka.MessageSender
 import com.example.kotlinstudies.service.PersonService
-import org.hibernate.annotations.Cache
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.Page
@@ -24,7 +23,8 @@ import javax.validation.Valid
 class PersonController(
         private val personService: PersonService,
         private val personRequestMapper: PersonRequestMapper,
-        private val personResponseMapper: PersonResponseMapper
+        private val personResponseMapper: PersonResponseMapper,
+        private val messageSender: MessageSender
 ) {
 
     /*
@@ -54,7 +54,7 @@ class PersonController(
 
     @PostMapping
     @Transactional
-    @CacheEvict("persons")
+    @CacheEvict(value = ["persons"], allEntries = true)
     fun createPerson(
             @Valid @RequestBody personRequestDto: PersonRequestDto,
             uriBuilder: UriComponentsBuilder
@@ -64,9 +64,21 @@ class PersonController(
         return ResponseEntity.created(uri).body(responseBody)
     }
 
+    @PostMapping("/send")
+    fun sendMessage(
+            @Valid @RequestBody personRequestDto: PersonRequestDto,
+            uriBuilder: UriComponentsBuilder
+    ): ResponseEntity<PersonResponseDto> {
+        val responseBody = personResponseMapper.map(personService.create(personRequestMapper.map(personRequestDto)))
+        messageSender.send("person", responseBody)
+        val uri = uriBuilder.path("/persons/${responseBody.id}").build().toUri()
+        return ResponseEntity.created(uri).body(responseBody)
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
+    @CacheEvict(value = ["persons"], allEntries = true)
     fun deletePerson(@PathVariable id: Int) {
         personService.removeById(id)
     }
