@@ -1,7 +1,7 @@
 package com.example.kotlinstudies.adapter.controller
 
 import com.example.kotlinstudies.adapter.controller.dto.PersonRequestDto
-import com.example.kotlinstudies.adapter.controller.dto.mapper.PersonRequestMapper
+import com.example.kotlinstudies.adapter.controller.dto.mapper.PersonDomainMapper
 import com.example.kotlinstudies.adapter.controller.dto.PersonResponseDto
 import com.example.kotlinstudies.adapter.controller.dto.mapper.PersonResponseMapper
 import com.example.kotlinstudies.adapter.messaging.MessageSender
@@ -22,7 +22,7 @@ import javax.validation.Valid
 @RequestMapping("/persons")
 class PersonController(
         private val personService: PersonService,
-        private val personRequestMapper: PersonRequestMapper,
+        private val personDomainMapper: PersonDomainMapper,
         private val personResponseMapper: PersonResponseMapper,
         private val messageSender: MessageSender
 ) {
@@ -59,7 +59,7 @@ class PersonController(
             @Valid @RequestBody personRequestDto: PersonRequestDto,
             uriBuilder: UriComponentsBuilder
     ): ResponseEntity<PersonResponseDto> {
-        val responseBody = personResponseMapper.map(personService.create(personRequestMapper.map(personRequestDto)))
+        val responseBody = personResponseMapper.map(personService.create(personDomainMapper.map(personRequestDto)))
         val uri = uriBuilder.path("/persons/${responseBody.id}").build().toUri()
         return ResponseEntity.created(uri).body(responseBody)
     }
@@ -69,7 +69,7 @@ class PersonController(
             @Valid @RequestBody personRequestDto: PersonRequestDto,
             uriBuilder: UriComponentsBuilder
     ): ResponseEntity<PersonResponseDto> {
-        val responseBody = personResponseMapper.map(personService.create(personRequestMapper.map(personRequestDto)))
+        val responseBody = personResponseMapper.map(personService.create(personDomainMapper.map(personRequestDto)))
         messageSender.send("person", responseBody)
         val uri = uriBuilder.path("/persons/${responseBody.id}").build().toUri()
         return ResponseEntity.created(uri).body(responseBody)

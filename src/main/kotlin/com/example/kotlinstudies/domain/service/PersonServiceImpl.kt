@@ -19,21 +19,12 @@ class PersonServiceImpl(
 ): PersonService {
 
     override fun create(person: Person): Person {
-        var result = runCatching {
-            // process, metrics etc
+        var personData: PersonData? = null
+        try {
+            return personMapper.map(repository.save(dataMapper.map(person)))
+        } catch (e:Exception) {
+            throw Exception("there was a failure while saving the person")
         }
-
-        result.onFailure {
-            // process errors
-        }
-
-        result.onSuccess {
-            // process success
-
-        }
-
-        val personData = repository.save(dataMapper.map(person))
-        return personMapper.map(personData)
     }
 
     override fun update(id: Int, person: Person): Person {
